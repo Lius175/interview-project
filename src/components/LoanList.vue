@@ -106,6 +106,7 @@ export default {
         const sortModalVisible = ref(false);
         const router = useRouter();
 
+        // get loans data
         const fetchLoans = async () => {
             const { axiosClient } = useAxios();
             try {
@@ -121,19 +122,23 @@ export default {
             fetchLoans();
         });
 
+        // save selected loan data
         const selectLoan = (loan) => {
             store.setSelectedLoan(loan);
             router.push({ name: 'Loan Detail' });
         };
 
+        //show filter modal
         const toggleFilterModal = () => {
             filterModalVisible.value = !filterModalVisible.value;
         };
 
+        //show sort modal
         const toggleSortModal = () => {
             sortModalVisible.value = !sortModalVisible.value;
         };
 
+        //set filter for loan
         const applyFilter = () => {
             filterAmountMin.value = tempFilterAmountMin.value;
             filterAmountMax.value = tempFilterAmountMax.value;
@@ -144,6 +149,7 @@ export default {
             toggleFilterModal();
         };
 
+        //set sort loan 
         const applySort = () => {
             sortBy.value = tempSortBy.value
             toggleSortModal();
@@ -172,7 +178,7 @@ export default {
                 result = result.filter((loan) => loan.term <= filterTermMax.value);
             }
 
-            // Apply sort
+            // Apply sort ascending
             if (sortBy.value) {
                 result = result.slice().sort((a, b) => {
                     if (sortBy.value === 'amount') {

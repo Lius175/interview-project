@@ -1,12 +1,8 @@
 <template>
-    <!-- <header>
-        <h1>Interview Project Loans </h1>
-    </header> -->
     <LoanList />
 </template>
 
 <script>
-import useAxios from '../composables/axios'
 import { ref, onMounted } from 'vue';
 import LoanList from '../components/LoanList.vue'
 
@@ -15,30 +11,6 @@ export default {
     components: {
         LoanList,
     },
-
-    setup() {
-        const loans = ref([]);
-
-        const fetchLoans = async () => {
-            const { axiosClient } = useAxios()
-            try {
-                const response = await axiosClient.get('andreascandle/p2p_json_test/main/api/json/loans.json');
-                loans.value = response.data;
-                console.log(loans.value)
-            } catch (error) {
-                console.error('Error fetching users:', error);
-            }
-        };
-
-        onMounted(() => {
-            fetchLoans();
-        });
-
-        return {
-            loans,
-        };
-    },
-
 
 }
 </script>

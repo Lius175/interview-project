@@ -28,7 +28,7 @@ import { store } from '../composables/storeLoan.js';
 export default {
     name: 'LoanDetail',
     setup() {
-        const loan = computed(() => store.selectedLoan);
+        const loan = computed(() => store.selectedLoan); //Mengambil data loan yang dipilih
 
         return {
             loan,
